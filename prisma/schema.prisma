@@ -13,4 +13,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Task {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  dueDate String @db.VarChar(10)
+  status Status @default(NOT_STARTED)
+  description String?
+  createdAt DateTime @default(now()) @db.Timestamp()
+  updatedAt DateTime @updatedAt @db.Timestamp
+}
 
+enum Status {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
